@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Ovia Purify water logo">
+<defs>
+ <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#00d9ff"/><stop offset=".48" stop-color="#0878ff"/><stop offset="1" stop-color="#00c9ef"/></linearGradient>
+ <linearGradient id="silver" x1="0" y1="0" x2=".1" y2="1"><stop stop-color="#fff"/><stop offset=".55" stop-color="#cbd7e5"/><stop offset="1" stop-color="#fff"/></linearGradient>
+ <linearGradient id="water" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5ef4ff"/><stop offset=".4" stop-color="#009cff"/><stop offset="1" stop-color="#003bd5"/></linearGradient>
+</defs>
+<circle cx="50" cy="50" r="47" fill="#061326" stroke="url(#ring)" stroke-width="3.2"/>
+<circle cx="50" cy="50" r="42.5" fill="none" stroke="#13c9f5" stroke-width="1.1" opacity=".8"/>
+<path d="M17 27 L27 27 L39 47 L51 27 L62 27 L47 53 L39 65 Z" fill="url(#silver)"/>
+<path d="M55 27 L70 27 Q82 27 82 38 Q82 47 71 48 L62 48 L62 64 L52 64 L52 42 L68 42 Q73 42 73 37 Q73 33 68 33 L56 33 Z" fill="url(#silver)"/>
+<path d="M50 29 C47 37 39 44 39 51 C39 59 44 64 51 64 C59 64 64 58 64 51 C64 44 55 36 50 29Z" fill="url(#water)" stroke="#d9fbff" stroke-width="1.6"/>
+<path d="M13 67 Q29 53 44 63 T84 61 Q68 79 49 72 T13 77" fill="none" stroke="url(#ring)" stroke-width="3.2" stroke-linecap="round"/>
+<path d="M16 72 Q31 61 46 69 T81 67" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
