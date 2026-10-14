@@ -24,7 +24,7 @@ function showSuccess(form){
  modal.classList.add("show");
 }
 async function submitForm(form){
- if(form.dataset.form==="order"){const total=["qty_500ml","qty_1500ml","qty_19l"].reduce((sum,name)=>sum+Math.max(0,parseInt(form.elements[name]?.value||"0",10)||0),0);if(total<1){alert("Please select at least one product quantity before submitting your order enquiry.");return}}
+ if(form.dataset.form==="order"){const total=["qty_500ml","qty_1500ml","qty_6l"].reduce((sum,name)=>sum+Math.max(0,parseInt(form.elements[name]?.value||"0",10)||0),0);if(total<1){alert("Please select at least one product quantity before submitting your order enquiry.");return}}
  const btn=form.querySelector(".submit-btn"), original=btn.innerHTML;btn.disabled=true;btn.innerHTML='Sending <span>◌</span>';
  const fd=new FormData(form);fd.set("access_key",ACCESS_KEY);fd.set("subject",form.dataset.title||"Ovia enquiry");fd.set("from_name","Ovia Website");
  const phone=fd.get("phone"),wa=fd.get("whatsapp");
@@ -51,6 +51,6 @@ function initOvia(){
   }));
   document.querySelectorAll("form[data-form]").forEach(f=>f.addEventListener("submit",e=>{e.preventDefault();submitForm(f)}));
   const params=new URLSearchParams(location.search),p=params.get("product");
-  if(p){const map={"500ml":"qty_500ml","1500ml":"qty_1500ml","19l":"qty_19l"},i=document.querySelector("[name='"+(map[p]||"")+"']");if(i)i.value=1}
+  if(p){const map={"500ml":"qty_500ml","1500ml":"qty_1500ml","6l":"qty_6l"},i=document.querySelector("[name='"+(map[p]||"")+"']");if(i)i.value=1}
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initOvia,{once:true});else initOvia();
