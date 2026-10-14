@@ -24,7 +24,7 @@ function showSuccess(form){
  modal.classList.add("show");
 }
 async function submitForm(form){
- if(form.dataset.form==="order"){const total=["qty_500ml","qty_1500ml","qty_6l"].reduce((sum,name)=>sum+Math.max(0,parseInt(form.elements[name]?.value||"0",10)||0),0);if(total<1){alert("Please select at least one product quantity before submitting your order enquiry.");return}}
+ if(form.dataset.form==="order"){const n=name=>Math.max(0,parseInt(form.elements[name]?.value||"0",10)||0);const q500=n("qty_500ml"),q15=n("qty_1500ml"),q6=n("qty_6l");if(q500+q15+q6<1){alert("Please select at least one product quantity before submitting your order enquiry.");return}const country=form.elements.country?.value||"",city=(form.elements.city?.value||"").trim().toLowerCase(),karachi=country==="PK"&&city.includes("karachi"),pakistan=country==="PK";if(q15>0&&((karachi&&q15<60)||(pakistan&&!karachi&&q15<600)||(!pakistan&&q15<12000))){alert("Minimum 1.5 Liter order: 60 packs in Karachi, 600 packs out of city, or 12000 packs out of country.");return}if(q500>0&&((pakistan&&!karachi&&q500<500)||(!pakistan&&q500<10000))){alert("Minimum 500 ml order: 500 packs out of city or 10000 packs out of country. In Karachi, orders below 50 packs have a delivery fee.");return}}
  const btn=form.querySelector(".submit-btn"), original=btn.innerHTML;btn.disabled=true;btn.innerHTML='Sending <span>◌</span>';
  const fd=new FormData(form);fd.set("access_key",ACCESS_KEY);fd.set("subject",form.dataset.title||"Ovia enquiry");fd.set("from_name","Ovia Website");
  const phone=fd.get("phone"),wa=fd.get("whatsapp");
