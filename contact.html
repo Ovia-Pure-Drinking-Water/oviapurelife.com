@@ -88,12 +88,13 @@
 <label>Full name<input required name="name" autocomplete="name" placeholder="Your name"></label>
 <label>Email address<input required type="email" name="email" autocomplete="email" placeholder="name@example.com"></label>
 <label>Country<select required name="country" class="country-select" aria-label="Select your country"><option value="">Loading countries…</option></select></label>
-<div class="phone-row"><label>Country code<select required name="phone_code" class="code-select" aria-label="Select your country calling code"><option value="">Loading country codes…</option></select></label><label>Phone number<input required name="phone" inputmode="tel" autocomplete="tel-national" placeholder="3001234567"></label></div>
+<div class="phone-row"><label>Country code<select required name="phone_code" class="code-select" aria-label="Select your country calling code"><option value="">Loading country codes…</option></select></label><label>Phone number<input required name="phone" type="tel" inputmode="tel" autocomplete="tel-national" minlength="6" maxlength="20" pattern="[0-9 +()\-]{6,20}" title="Enter a valid phone number using digits and an optional country prefix." placeholder="3001234567"></label></div>
 <label>Enquiry type<select required name="inquiry_type"><option value="">Select an option</option><option>General question</option><option>Availability</option><option>Partnership</option><option>Feedback</option><option>Media / press</option><option>Other</option></select></label>
-<label>Message<textarea required name="message" rows="6" placeholder="Tell us what you need..."></textarea></label>
+<label>Message<textarea required name="message" rows="6" minlength="10" maxlength="3000" placeholder="Tell us what you need (at least 10 characters)..."></textarea></label>
 <button class="btn btn-primary submit-btn" type="submit">Send enquiry <span>↗</span></button>
+<p class="form-status" role="status" aria-live="polite" style="margin:0;color:#718596;font-size:11px;line-height:1.7">Required fields are marked by the browser. Please include a valid email and phone number.</p>
 </form>
-<div class="contact-form-foot"><span>✓</span><div>Please check your details before submitting. The form will show a confirmation if your message is sent successfully.</div></div>
+<div class="contact-form-foot"><span>✓</span><div>Your message is sent through the website form service. Please check your email and phone details before submitting; if sending fails, you can contact Ovia on WhatsApp.</div></div>
 </div>
 </section>
 </main>
