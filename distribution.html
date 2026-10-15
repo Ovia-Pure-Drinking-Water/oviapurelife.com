@@ -35,7 +35,30 @@
 .dist-art-caption{bottom:0;z-index:3}
 @media(max-width:850px){.dist-bottle-lineup{height:260px;max-width:390px}.dist-bottle-small{max-height:125px}.dist-bottle-medium{max-height:160px}.dist-bottle-large{max-height:205px}}
 @media(max-width:560px){.dist-art{height:260px}.dist-bottle-lineup{height:220px;gap:7px}.dist-bottle-small{max-height:105px;max-width:24%}.dist-bottle-medium{max-height:140px;max-width:29%}.dist-bottle-large{max-height:175px;max-width:38%}}
-@media(prefers-reduced-motion:reduce){.dist-bottle{animation:none!important}}</style>\n</head>
+@media(prefers-reduced-motion:reduce){.dist-bottle{animation:none!important}}
+/* Distribution hero: animated water artwork, no product bottles */
+.water-art{isolation:isolate;overflow:hidden;min-height:420px}
+.water-art:before{content:"";position:absolute;width:76%;height:62%;left:12%;bottom:9%;border-radius:50%;background:radial-gradient(ellipse,rgba(69,199,220,.24),rgba(110,221,239,.08) 52%,transparent 72%);filter:blur(7px);animation:waterGlow 5s ease-in-out infinite}
+.water-art .dist-ring{z-index:0}
+.water-orbit{position:absolute;z-index:1;left:50%;top:47%;width:66%;height:22%;border:2px solid rgba(55,185,214,.48);border-radius:50%;transform:translate(-50%,-50%) rotate(-18deg);animation:orbitDrift 8s ease-in-out infinite}
+.orbit-b{width:82%;height:30%;border-color:rgba(55,185,214,.25);transform:translate(-50%,-50%) rotate(24deg);animation-delay:-3s}
+.water-drop{position:absolute;z-index:3;left:50%;top:43%;width:clamp(105px,16vw,165px);height:clamp(145px,22vw,215px);transform:translate(-50%,-50%) rotate(0deg);border-radius:54% 46% 58% 42%/68% 67% 33% 32%;background:linear-gradient(135deg,rgba(255,255,255,.92) 4%,rgba(112,224,244,.65) 28%,rgba(36,165,208,.28) 55%,rgba(255,255,255,.92) 77%);border:2px solid rgba(255,255,255,.9);box-shadow:inset 10px 4px 18px rgba(255,255,255,.9),inset -12px -10px 25px rgba(31,161,205,.24),0 20px 55px rgba(26,153,194,.18);animation:dropFloat 4.5s ease-in-out infinite}
+.drop-shine{position:absolute;top:15%;left:18%;width:18%;height:45%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.08));transform:rotate(16deg);filter:blur(1px)}
+.drop-leaf{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:clamp(35px,5vw,58px);color:rgba(255,255,255,.92);text-shadow:0 2px 15px rgba(18,149,187,.22)}
+.water-wave{position:absolute;z-index:2;left:50%;bottom:16%;width:88%;height:20%;border:2px solid rgba(62,184,218,.55);border-left-color:transparent;border-right-color:transparent;border-radius:50%;transform:translateX(-50%);animation:wavePulse 3.8s ease-in-out infinite}
+.wave-b{width:68%;bottom:12%;height:18%;border-color:rgba(62,184,218,.3);border-left-color:transparent;border-right-color:transparent;animation-delay:-1.7s}
+.water-bubble{position:absolute;z-index:4;width:14px;height:14px;border-radius:50%;border:1px solid rgba(255,255,255,.95);background:radial-gradient(circle at 30% 25%,#fff,rgba(76,199,226,.45) 65%,rgba(255,255,255,.3));box-shadow:0 0 18px rgba(66,196,222,.22);animation:bubbleRise 5s ease-in-out infinite}
+.bubble-a{left:20%;top:37%;width:19px;height:19px}.bubble-b{right:17%;top:32%;width:12px;height:12px;animation-delay:-2s}.bubble-c{right:23%;bottom:29%;width:9px;height:9px;animation-delay:-3.4s}.bubble-d{left:27%;bottom:25%;width:11px;height:11px;animation-delay:-1s}
+.water-art .dist-art-caption{z-index:5}
+@keyframes dropFloat{0%,100%{margin-top:0;filter:drop-shadow(0 12px 18px rgba(20,150,190,.1))}50%{margin-top:-13px;filter:drop-shadow(0 20px 25px rgba(20,150,190,.2))}}
+@keyframes wavePulse{0%,100%{transform:translateX(-50%) scaleX(.92);opacity:.55}50%{transform:translateX(-50%) scaleX(1.04);opacity:1}}
+@keyframes bubbleRise{0%,100%{translate:0 7px;opacity:.65}50%{translate:0 -18px;opacity:1}}
+@keyframes orbitDrift{0%,100%{rotate:-4deg;scale:1}50%{rotate:5deg;scale:1.04}}
+@keyframes waterGlow{0%,100%{opacity:.65;transform:scale(.95)}50%{opacity:1;transform:scale(1.08)}}
+@media(max-width:700px){.water-art{min-height:300px}.water-drop{width:112px;height:155px}.water-art .dist-art-caption{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.water-art *{animation:none!important}}
+
+</style>\n</head>
 <body>
 <header class="site-header">
 <a class="brand" href="index.html" aria-label="Ovia — Home" data-sound="click"><span class="brand-mark" aria-hidden="true"><img src="ovia-logo.png.jpeg" alt=""></span><span class="brand-word">OVIA<small>PURE DRINKING WATER</small></span></a>
@@ -45,7 +68,7 @@
 <main>
 <section class="dist-hero">
 <div class="dist-hero-copy reveal"><p class="eyebrow">OVIA DISTRIBUTION / 04</p><h1>Built for<br><em>repeat supply.</em></h1><p class="lead">From household needs to workplace and hospitality requirements, start a conversation about the formats and quantities that fit your setting.</p><div class="dist-actions"><a class="btn btn-primary" href="order.html?type=bulk" data-sound="whoosh">Request a supply plan <span>↗</span></a><a class="text-link" href="contact.html">Talk to Ovia</a></div></div>
-<div class="dist-art" role="img" aria-label="Abstract Ovia water bottle surrounded by circular lines"><span class="dist-ring"></span><span class="dist-ring two"></span><span class="dist-ring three"></span><div class="dist-bottle-lineup" aria-label="OVIA 500 ml, 1.5 litre and 6 litre bottles"><img class="dist-bottle dist-bottle-small" src="bottle-500ml.png" alt="OVIA 500 ml bottle"><img class="dist-bottle dist-bottle-medium" src="bottle-1.5l.png" alt="OVIA 1.5 litre bottle"><img class="dist-bottle dist-bottle-large" src="bottle-6l.png" alt="OVIA 6 litre bottle"></div><span class="dist-art-caption">500 ML · 1.5 L · 6 L / SUPPLY FORMATS</span></div>
+<div class="dist-art water-art" role="img" aria-label="Animated abstract water droplet, flowing water and bubbles"><span class="dist-ring"></span><span class="dist-ring two"></span><span class="dist-ring three"></span><div class="water-orbit orbit-a"></div><div class="water-orbit orbit-b"></div><div class="water-drop"><span class="drop-shine"></span><span class="drop-leaf">✦</span></div><div class="water-wave wave-a"></div><div class="water-wave wave-b"></div><span class="water-bubble bubble-a"></span><span class="water-bubble bubble-b"></span><span class="water-bubble bubble-c"></span><span class="water-bubble bubble-d"></span><span class="dist-art-caption">PURE WATER · RELIABLE SUPPLY</span></div>
 </section>
 <section class="dist-highlights" aria-label="Supply principles"><div class="dist-highlight"><span>01</span><div><b>Flexible conversations</b><small>Tell us about your setting and requirements.</small></div></div><div class="dist-highlight"><span>02</span><div><b>Clear quantities</b><small>Discuss format, estimated volume and frequency.</small></div></div><div class="dist-highlight"><span>03</span><div><b>Confirmed details</b><small>Agree availability and arrangements directly.</small></div></div></section>
 <section id="supply-options"><div class="dist-section-intro reveal"><p class="eyebrow">SUPPLY OPTIONS</p><h2>One clear conversation.<br><em>Different everyday needs.</em></h2><p>Every setting has its own rhythm. Share what you are planning and Ovia can discuss suitable product formats and the next steps with you.</p></div>
