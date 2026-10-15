@@ -35,6 +35,19 @@ async function submitForm(form){
  if(wa)fd.set("international_whatsapp","+"+waCode+" "+wa.replace(/^0/,"").replace(/\D/g,""));
  try{const res=await fetch("https://api.web3forms.com/submit",{method:"POST",body:fd});const data=await res.json();if(data.success){form.reset();document.querySelectorAll(".code-select").forEach(s=>s.value="");document.querySelectorAll(".country-select").forEach(s=>s.value="");showSuccess(form)}else throw new Error(data.message||"Submission failed")}catch(e){alert("We couldn't send the form right now. Please try again.");}finally{btn.disabled=false;btn.innerHTML=original}
 }
+function updateOrderEstimate(){
+ const form=document.querySelector('form[data-form="order"]');if(!form)return;
+ const qty=name=>Math.max(0,parseInt(form.elements[name]?.value||"0",10)||0);
+ const q500=qty("qty_500ml"),q15=qty("qty_1500ml"),q6=qty("qty_6l");
+ const packs=q500+q15,subtotal=q500*360+q15*350,savings=(Math.floor(q500/100)+Math.floor(q15/100))*1000;
+ const money=n=>"Rs. "+n.toLocaleString("en-PK");
+ const count=document.getElementById("order-pack-count"),total=document.getElementById("order-subtotal"),save=document.getElementById("order-savings"),note=document.getElementById("order-estimate-note");
+ if(count)count.textContent=packs+" packs / "+q6+" individual 6 L bottle"+(q6===1?"":"s");
+ if(total)total.textContent=money(Math.max(0,subtotal-savings))+(savings?" after savings":"");
+ if(save)save.textContent=money(savings);
+ if(note)note.textContent="Known subtotal: "+money(subtotal)+". 6 L pricing and delivery fees are not included and will be confirmed by Ovia. Savings are calculated separately for each pack size at every 100 packs; delivery eligibility depends on destination and minimum quantities.";
+}
+
 function initOvia(){
   fillCountries();
   const pre=document.getElementById("preloader");
@@ -47,8 +60,9 @@ function initOvia(){
   document.querySelectorAll("[data-sound]").forEach(x=>x.addEventListener("click",()=>sound(x.dataset.sound)));
   document.querySelectorAll(".stepper button").forEach(b=>b.addEventListener("click",()=>{
     const input=b.parentElement.querySelector("input");let n=parseInt(input.value||"0",10);
-    n=b.dataset.plus!==undefined?n+1:Math.max(0,n-1);input.value=n;sound("click");
+    n=b.dataset.plus!==undefined?n+1:Math.max(0,n-1);input.value=n;sound("click");updateOrderEstimate();
   }));
+  updateOrderEstimate();
   document.querySelectorAll("form[data-form]").forEach(f=>f.addEventListener("submit",e=>{e.preventDefault();submitForm(f)}));
   const params=new URLSearchParams(location.search),p=params.get("product");
   if(p){const map={"500ml":"qty_500ml","1500ml":"qty_1500ml","6l":"qty_6l"},i=document.querySelector("[name='"+(map[p]||"")+"']");if(i)i.value=1}
