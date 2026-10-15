@@ -33,7 +33,7 @@ async function submitForm(form){
  if(wa && !/^\+?[0-9 ()-]{6,20}$/.test(wa)){alert("Please enter a valid WhatsApp number.");btn.disabled=false;btn.innerHTML=original;return}
  if(phone)fd.set("international_phone","+"+phoneCode+" "+phone.replace(/\D/g,""));
  if(wa)fd.set("international_whatsapp","+"+waCode+" "+wa.replace(/^0/,"").replace(/\D/g,""));
- try{const res=await fetch("https://api.web3forms.com/submit",{method:"POST",body:fd});const data=await res.json();if(data.success){form.reset();document.querySelectorAll(".code-select").forEach(s=>s.value="");document.querySelectorAll(".country-select").forEach(s=>s.value="");showSuccess(form)}else throw new Error(data.message||"Submission failed")}catch(e){alert("We couldn't send the form right now. Please try again.");}finally{btn.disabled=false;btn.innerHTML=original}
+ try{const res=await fetch("https://api.web3forms.com/submit",{method:"POST",body:fd});const data=await res.json();if(data.success){form.reset();document.querySelectorAll(".code-select").forEach(s=>s.value="");document.querySelectorAll(".country-select").forEach(s=>s.value="");window.location.assign("thank-you.html?type="+encodeURIComponent(form.dataset.form||"contact"))}else throw new Error(data.message||"Submission failed")}catch(e){alert("We couldn't send the form right now. Please try again.");}finally{btn.disabled=false;btn.innerHTML=original}
 }
 function updateOrderEstimate(){
  const form=document.querySelector('form[data-form="order"]');if(!form)return;
