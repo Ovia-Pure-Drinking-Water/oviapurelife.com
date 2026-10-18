@@ -39,13 +39,13 @@ function updateOrderEstimate(){
  const form=document.querySelector('form[data-form="order"]');if(!form)return;
  const qty=name=>Math.max(0,parseInt(form.elements[name]?.value||"0",10)||0);
  const q500=qty("qty_500ml"),q15=qty("qty_1500ml"),q6=qty("qty_6l");
- const packs=q500+q15,subtotal=q500*380+q15*380+q6*60,savings=(Math.floor(q500/100)+Math.floor(q15/100))*1000;
+ const packs=q500+q15,subtotal=q500*340+q15*340+q6*150,savings=(Math.floor(q500/100)+Math.floor(q15/100))*1000;
  const money=n=>"Rs. "+n.toLocaleString("en-PK");
  const count=document.getElementById("order-pack-count"),total=document.getElementById("order-subtotal"),save=document.getElementById("order-savings"),note=document.getElementById("order-estimate-note");
  if(count)count.textContent=packs+" packs / "+q6+" individual 6 L bottle"+(q6===1?"":"s");
  if(total)total.textContent=money(Math.max(0,subtotal-savings))+(savings?" after savings":"");
  if(save)save.textContent=money(savings);
- if(note)note.textContent="Known subtotal includes 500 ml and 1.5 L packs at Rs. 380 each and 6 L bottles at Rs. 60 each: "+money(subtotal)+". Delivery fees are not included. Savings are calculated separately for each pack size at every 100 packs; delivery eligibility depends on destination and minimum quantities.";
+ if(note)note.textContent="Known subtotal includes 500 ml and 1.5 L packs at Rs. 340 each and 6 L bottles at Rs. 150 each: "+money(subtotal)+". Delivery fees are not included. Savings are calculated separately for each pack size at every 100 packs; delivery eligibility depends on destination and minimum quantities.";
 }
 
 function initOvia(){
