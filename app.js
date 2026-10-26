@@ -24,16 +24,16 @@ function showSuccess(form){
  modal.classList.add("show");
 }
 async function submitForm(form){
- if(form.dataset.form==="order"){const n=name=>Math.max(0,parseInt(form.elements[name]?.value||"0",10)||0);const q500=n("qty_500ml"),q15=n("qty_1500ml"),q6=n("qty_6l");if(q500+q15+q6<1){alert("Please select at least one product quantity before submitting your order enquiry.");return}}
+ if(form.dataset.form==="order"){const n=name=>Math.max(0,parseInt(form.elements[name]?.value||"0",10)||0);const q500=n("qty_500ml"),q15=n("qty_1500ml"),q6=n("qty_6l"),q19=n("qty_19l");if(q500+q15+q6+q19<1){alert("Please select at least one product quantity before submitting your order enquiry.");return}}
  const btn=form.querySelector(".submit-btn"), original=btn.innerHTML;btn.disabled=true;btn.innerHTML='Sending <span>◌</span>';
  const fd=new FormData(form);fd.set("access_key",ACCESS_KEY);fd.set("subject",form.dataset.title||"Ovia enquiry");fd.set("from_name","Ovia Website");
  if(form.dataset.form==="order"){
    const n=name=>Math.max(0,parseInt(form.elements[name]?.value||"0",10)||0);
-   const q500=n("qty_500ml"),q15=n("qty_1500ml"),q6=n("qty_6l");
+   const q500=n("qty_500ml"),q15=n("qty_1500ml"),q6=n("qty_6l"),q19=n("qty_19l");
    const rate500=oviaPackRate(q500),rate15=oviaPackRate(q15),money=n=>"Rs. "+n.toLocaleString("en-PK");
-   const line500=q500*rate500,line15=q15*rate15,line6=q6*150;
-   const subtotal=line500+line15+line6,savings=q500*(500-rate500)+q15*(500-rate15);
-   const summary=["500 ml: "+q500+" packs × "+money(rate500)+" per pack = "+money(line500),"1.5 L: "+q15+" packs × "+money(rate15)+" per pack = "+money(line15),"6 L: "+q6+" bottles × Rs. 150 = "+money(line6),"Quantity savings: "+money(savings),"Estimated product total (delivery not included): "+money(subtotal),"Offer tiers (applied separately to 500 ml and 1.5 L): 1–19 = Rs. 500/pack; 20–47 = Rs. 450/pack; 48–77 = Rs. 400/pack; 78+ = Rs. 350/pack."].join("\n");
+   const line500=q500*rate500,line15=q15*rate15,line6=q6*150,line19=q19*350;
+   const subtotal=line500+line15+line6+line19,savings=q500*(500-rate500)+q15*(500-rate15);
+   const summary=["500 ml: "+q500+" packs × "+money(rate500)+" per pack = "+money(line500),"1.5 L: "+q15+" packs × "+money(rate15)+" per pack = "+money(line15),"6 L: "+q6+" bottles × Rs. 150 = "+money(line6),"19 L: "+q19+" bottles × Rs. 350 = "+money(line19),"Quantity savings on 500 ml and 1.5 L packs: "+money(savings),"Estimated product total (delivery not included): "+money(subtotal),"Offer tiers (applied separately to 500 ml and 1.5 L): 1–19 = Rs. 500/pack; 20–47 = Rs. 450/pack; 48–77 = Rs. 400/pack; 78+ = Rs. 350/pack. 19 L bottles are Rs. 350 each."].join("\n");
    fd.set("pricing_summary",summary);fd.set("product_subtotal",money(subtotal));fd.set("quantity_savings",money(savings));
  }
  const phone=fd.get("phone"),wa=fd.get("whatsapp");
@@ -54,20 +54,20 @@ function oviaPackRate(quantity){
 function updateOrderEstimate(){
  const form=document.querySelector('form[data-form="order"]');if(!form)return;
  const qty=name=>Math.max(0,parseInt(form.elements[name]?.value||"0",10)||0);
- const q500=qty("qty_500ml"),q15=qty("qty_1500ml"),q6=qty("qty_6l");
+ const q500=qty("qty_500ml"),q15=qty("qty_1500ml"),q6=qty("qty_6l"),q19=qty("qty_19l");
  const rate500=oviaPackRate(q500),rate15=oviaPackRate(q15);
- const line500=q500*rate500,line15=q15*rate15,line6=q6*150;
- const subtotal=line500+line15+line6;
+ const line500=q500*rate500,line15=q15*rate15,line6=q6*150,line19=q19*350;
+ const subtotal=line500+line15+line6+line19;
  const savings=q500*(500-rate500)+q15*(500-rate15);
  const money=n=>"Rs. "+n.toLocaleString("en-PK");
  const count=document.getElementById("order-pack-count"),total=document.getElementById("order-subtotal"),save=document.getElementById("order-savings"),note=document.getElementById("order-estimate-note");
  const rate500Label=document.getElementById("price_500ml"),rate15Label=document.getElementById("price_1500ml");
  if(rate500Label)rate500Label.textContent=q500?money(rate500)+" / pack":"Rs. 500 / pack · quantity offers";
  if(rate15Label)rate15Label.textContent=q15?money(rate15)+" / pack":"Rs. 500 / pack · quantity offers";
- if(count)count.textContent=(q500+q15)+" packs / "+q6+" individual 6 L bottle"+(q6===1?"":"s");
+ if(count)count.textContent=(q500+q15)+" packs / "+q6+" × 6 L bottles / "+q19+" × 19 L bottles";
  if(total)total.textContent=money(subtotal);
  if(save)save.textContent=money(savings);
- if(note)note.textContent="500 ml: "+q500+" packs × "+money(rate500)+" = "+money(line500)+". 1.5 L: "+q15+" packs × "+money(rate15)+" = "+money(line15)+". 6 L: "+q6+" bottles × Rs. 150 = "+money(line6)+". Quantity savings: "+money(savings)+". Delivery charges are not included."; 
+ if(note)note.textContent="500 ml: "+q500+" packs × "+money(rate500)+" = "+money(line500)+". 1.5 L: "+q15+" packs × "+money(rate15)+" = "+money(line15)+". 6 L: "+q6+" bottles × Rs. 150 = "+money(line6)+". 19 L: "+q19+" bottles × Rs. 350 = "+money(line19)+". Quantity savings: "+money(savings)+". Delivery charges are not included."; 
 }
 
 function initOvia(){
@@ -87,6 +87,6 @@ function initOvia(){
   updateOrderEstimate();
   document.querySelectorAll("form[data-form]").forEach(f=>f.addEventListener("submit",e=>{e.preventDefault();submitForm(f)}));
   const params=new URLSearchParams(location.search),p=params.get("product");
-  if(p){const map={"500ml":"qty_500ml","1500ml":"qty_1500ml","6l":"qty_6l"},i=document.querySelector("[name='"+(map[p]||"")+"']");if(i){i.value=1;updateOrderEstimate()}}
+  if(p){const map={"500ml":"qty_500ml","1500ml":"qty_1500ml","6l":"qty_6l","19l":"qty_19l"},i=document.querySelector("[name='"+(map[p]||"")+"']");if(i){i.value=1;updateOrderEstimate()}}
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initOvia,{once:true});else initOvia();
