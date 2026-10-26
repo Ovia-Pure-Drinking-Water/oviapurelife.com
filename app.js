@@ -24,7 +24,7 @@ function showSuccess(form){
  modal.classList.add("show");
 }
 async function submitForm(form){
- if(form.dataset.form==="order"){const n=name=>Math.max(0,parseInt(form.elements[name]?.value||"0",10)||0);const q500=n("qty_500ml"),q15=n("qty_1500ml"),q6=n("qty_6l"),q19=n("qty_19l");if(q500+q15+q6+q19<1){alert("Please select at least one product quantity before submitting your order enquiry.");return}}
+ if(form.dataset.form==="order"){const n=name=>Math.max(0,parseInt(form.elements[name]?.value||"0",10)||0);const q500=n("qty_500ml"),q15=n("qty_1500ml"),q6=n("qty_6l"),q19=n("qty_19l");if(q500+q15+q6+q19<1){alert("Please select at least one product quantity before submitting your order enquiry.");return}if(q19>0&&q19<3){alert("The minimum order for 19 L is 3 bottles (Rs. 1,050 before delivery). Please select 3 or more bottles.");return}}
  const btn=form.querySelector(".submit-btn"), original=btn.innerHTML;btn.disabled=true;btn.innerHTML='Sending <span>◌</span>';
  const fd=new FormData(form);fd.set("access_key",ACCESS_KEY);fd.set("subject",form.dataset.title||"Ovia enquiry");fd.set("from_name","Ovia Website");
  if(form.dataset.form==="order"){
@@ -82,11 +82,15 @@ function initOvia(){
   document.querySelectorAll("[data-sound]").forEach(x=>x.addEventListener("click",()=>sound(x.dataset.sound)));
   document.querySelectorAll(".stepper button").forEach(b=>b.addEventListener("click",()=>{
     const input=b.parentElement.querySelector("input");let n=parseInt(input.value||"0",10);
-    n=b.dataset.plus!==undefined?n+1:Math.max(0,n-1);input.value=n;sound("click");updateOrderEstimate();
+    if(input.name==="qty_19l"){
+      if(b.dataset.plus!==undefined)n=n<3?3:n+1;
+      else n=n<=3?0:n-1;
+    }else n=b.dataset.plus!==undefined?n+1:Math.max(0,n-1);
+    input.value=n;sound("click");updateOrderEstimate();
   }));
   updateOrderEstimate();
   document.querySelectorAll("form[data-form]").forEach(f=>f.addEventListener("submit",e=>{e.preventDefault();submitForm(f)}));
   const params=new URLSearchParams(location.search),p=params.get("product");
-  if(p){const map={"500ml":"qty_500ml","1500ml":"qty_1500ml","6l":"qty_6l","19l":"qty_19l"},i=document.querySelector("[name='"+(map[p]||"")+"']");if(i){i.value=1;updateOrderEstimate()}}
+  if(p){const map={"500ml":"qty_500ml","1500ml":"qty_1500ml","6l":"qty_6l","19l":"qty_19l"},i=document.querySelector("[name='"+(map[p]||"")+"']");if(i){i.value=p==="19l"?3:1;updateOrderEstimate()}}
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initOvia,{once:true});else initOvia();
