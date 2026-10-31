@@ -154,6 +154,10 @@ html{background:#f2fbfd}body{visibility:hidden;background:radial-gradient(ellips
       </div>
       <div class="estimate" aria-live="polite">
         <div class="estimate-row"><span>Selected packs / bottles</span><strong id="selected-count">0</strong></div>
+        <div class="estimate-row"><span>500 ml pack total</span><strong id="line-500ml">Rs. 0</strong></div>
+        <div class="estimate-row"><span>1.5 L pack total</span><strong id="line-1500ml">Rs. 0</strong></div>
+        <div class="estimate-row"><span>6 L bottle total</span><strong id="line-6l">Rs. 0</strong></div>
+        <div class="estimate-row"><span>19 L bottle total</span><strong id="line-19l">Rs. 0</strong></div>
         <div class="estimate-row"><span>Product subtotal (discounts applied)</span><strong id="product-subtotal">Rs. 0</strong></div>
         <div class="estimate-row"><span>Quantity savings</span><strong id="quantity-savings">Rs. 0</strong></div>
         <div class="estimate-row"><span>Delivery charge (Rs.)</span><strong><input name="delivery_charge" id="delivery-charge" type="number" min="0" step="1" value="0" aria-label="Delivery charge" style="max-width:150px;text-align:right;padding:9px 10px"></strong></div>
@@ -222,6 +226,10 @@ html{background:#f2fbfd}body{visibility:hidden;background:radial-gradient(ellips
    document.getElementById("unit-500ml").textContent="12 bottles per pack · "+(rate500?money(rate500):"Rs. 500 / pack · quantity offers");
    document.getElementById("unit-1500ml").textContent="6 bottles per pack · "+(rate15?money(rate15):"Rs. 500 / pack · quantity offers");
    document.getElementById("selected-count").textContent=qty["500ml"]+" × 500 ml packs · "+qty["1500ml"]+" × 1.5 L packs · "+qty["6l"]+" × 6 L bottles · "+qty["19l"]+" × 19 L bottles";
+   document.getElementById("line-500ml").textContent=money(lines["500ml"]);
+   document.getElementById("line-1500ml").textContent=money(lines["1500ml"]);
+   document.getElementById("line-6l").textContent=money(lines["6l"]);
+   document.getElementById("line-19l").textContent=money(lines["19l"]);
    document.getElementById("product-subtotal").textContent=money(subtotal);
    document.getElementById("quantity-savings").textContent=money(savings);
    document.getElementById("grand-total").textContent=money(total);
