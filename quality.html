@@ -82,7 +82,7 @@
   let lastClick=0;
   function countClick(){
     const now=Date.now();
-    if(!lastClick || now-lastClick>3000) clicks=0;
+    if(!lastClick || now-lastClick>=3000) clicks=0;
     lastClick=now;
     clicks+=1;
     if(clicks===15){
