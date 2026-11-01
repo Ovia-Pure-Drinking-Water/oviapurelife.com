@@ -281,7 +281,7 @@ html{background:#f2fbfd}body{visibility:hidden;background:radial-gradient(ellips
    const data=new FormData(form);
    let orderId=(data.get("order_id")||"").trim();
    if(!orderId){
-     const stamp=new Date().toISOString().replace(/\\D/g,"").slice(0,14);
+     const stamp=new Date().toISOString().replace(/[^0-9]/g,"").slice(0,14);
      const suffix=Math.random().toString(36).slice(2,6).toUpperCase();
      orderId="OV-DLV-"+stamp+"-"+suffix;
    }
