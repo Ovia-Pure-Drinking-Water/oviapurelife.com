@@ -32,12 +32,142 @@
 @media(max-width:680px){.site-header{isolation:isolate}.site-header .menu-btn{display:block;position:relative;z-index:103;padding:10px;touch-action:manipulation}.site-header .nav{z-index:102;max-height:calc(100dvh - 70px);overflow-y:auto;pointer-events:none}.site-header .nav.open{display:flex;pointer-events:auto}}
 @media(max-width:680px){.site-header .menu-btn{display:block!important;position:relative;z-index:10000;padding:10px;touch-action:manipulation}.site-header .nav.open{display:flex!important;pointer-events:auto!important}} .cta-panel:after{z-index:0;pointer-events:none}.cta-panel>*{position:relative;z-index:1}.cta-panel .btn{pointer-events:auto;cursor:pointer;touch-action:manipulation}
 </style><style id="ovia-real-product-bottles">.hero-bottle-wrap{overflow:visible}.hero-bottle-wrap .hero-product-image{position:relative;z-index:2;display:block;width:auto;height:min(490px,76%);max-width:90%;object-fit:contain;filter:drop-shadow(0 28px 24px rgba(7,26,48,.22));animation:oviaRealBottleFloat 5.8s ease-in-out infinite;transform-origin:50% 85%}.product-card .product-bottle-image{position:relative;z-index:1;display:block;object-fit:contain;width:auto;max-width:78%;height:205px;margin:4px auto 20px;filter:drop-shadow(0 14px 14px rgba(7,26,48,.17));transition:transform .45s cubic-bezier(.16,1,.3,1)}.product-card:hover .product-bottle-image{transform:translateY(-5px) scale(1.025)}.product-card .product-bottle-500{height:185px}.product-card .product-bottle-1500{height:205px}.product-card .product-bottle-6l{height:205px;max-width:90%}@keyframes oviaRealBottleFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-11px) rotate(1deg)}}@media(max-width:680px){.hero-bottle-wrap{height:420px!important}.hero-bottle-wrap .hero-product-image{height:min(360px,82%);max-width:82%}.product-card .product-bottle-image{height:190px}.product-card .product-bottle-500{height:170px}}@media(prefers-reduced-motion:reduce){.hero-bottle-wrap .hero-product-image{animation:none!important}}</style><style id="ovia-home-19l-card">.product-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.product-bottle-19l{height:205px;max-width:90%;object-fit:contain;margin:4px auto 20px;filter:drop-shadow(8px 18px 14px #071b3317)}@media(max-width:1100px){.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:680px){.product-grid{grid-template-columns:1fr}.product-bottle-19l{height:205px}}</style><style id="ovia-clear-pricing">.home-order-info .section-lead{max-width:680px;color:#60778a;font-size:15px;line-height:1.7;margin-top:14px}.home-order-grid article p{line-height:1.8}.home-order-grid article p strong{color:inherit}</style><meta name="google-site-verification" content="aKRSwbEgvCr6AUzKDQ2gLIX44dQLyqzpMbPQa9m7_fk"><link rel="stylesheet" href="liquid.css?v=20261107-2">
+
+<style id="ovia-cinematic-water-arrival">
+/* Homepage-only hero sequence: the water arrives first, the original bottle follows. */
+.hero-bottle-wrap{isolation:isolate;perspective:1100px}
+.hero-bottle-wrap>.halo{z-index:0}
+.hero-bottle-wrap>.hero-orbit{z-index:2}
+.hero-bottle-wrap>.hero-caption{z-index:5}
+.ovia-water-runup{
+  position:absolute;z-index:1;pointer-events:none;
+  left:-10%;right:-10%;top:1%;bottom:-5%;
+  transform-origin:50% 96%;
+  opacity:0;
+  animation:oviaWaterRunup 2.45s cubic-bezier(.16,.84,.22,1) .05s both;
+  will-change:transform,opacity;
+}
+.ovia-river-svg{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 15px 20px rgba(13,128,158,.13))}
+.ovia-river-bed{transform-origin:50% 90%;animation:oviaRiverGlisten 5.8s ease-in-out 2.45s infinite}
+.ovia-river-surface{stroke-dasharray:44 28;animation:oviaRiverFlow 5.6s linear 2.25s infinite}
+.ovia-river-current{animation:oviaRiverFlow 4.6s linear 2.2s infinite}
+.ovia-river-current.current-two{animation-duration:5.4s;animation-direction:reverse}
+.ovia-river-current.current-three{animation-duration:3.8s;opacity:.65}
+.ovia-river-pool{transform-box:fill-box;transform-origin:center;animation:oviaPoolRipple 4.2s ease-out 2.4s infinite}
+.ovia-river-pool.pool-two{animation-delay:3s}
+.ovia-water-spark{
+  position:absolute;display:block;width:9px;height:13px;border-radius:70% 30% 65% 35%;
+  background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(96,219,231,.54));
+  box-shadow:0 0 15px rgba(111,229,237,.52),inset 1px 1px 2px #fff;
+  opacity:0;transform:scale(.1) rotate(30deg);
+}
+.spark-one{left:24%;bottom:22%;animation:oviaWaterDrop .9s 1.05s cubic-bezier(.16,1,.3,1) both}
+.spark-two{right:24%;bottom:27%;width:7px;height:10px;animation:oviaWaterDrop .85s 1.22s cubic-bezier(.16,1,.3,1) both}
+.spark-three{left:36%;bottom:12%;width:6px;height:9px;animation:oviaWaterDrop 1s 1.38s cubic-bezier(.16,1,.3,1) both}
+.spark-four{right:36%;bottom:15%;width:5px;height:8px;animation:oviaWaterDrop .9s 1.48s cubic-bezier(.16,1,.3,1) both}
+.spark-five{left:49%;bottom:31%;width:5px;height:7px;animation:oviaWaterDrop .8s 1.3s cubic-bezier(.16,1,.3,1) both}
+.hero-bottle-wrap .hero-product-image{
+  z-index:4;
+  transform-origin:50% 82%;
+  backface-visibility:hidden;
+  animation:
+    oviaBottleArrival 2.55s cubic-bezier(.16,1,.3,1) .22s both,
+    oviaBottleSettledFloat 5.8s ease-in-out 2.77s infinite;
+  will-change:transform,opacity,filter;
+}
+@keyframes oviaWaterRunup{
+  0%{opacity:0;transform:perspective(900px) rotateX(49deg) translate3d(0,35%,0) scale3d(.13,.16,1)}
+  34%{opacity:.68;transform:perspective(900px) rotateX(27deg) translate3d(0,13%,0) scale3d(.56,.62,1)}
+  72%{opacity:.92;transform:perspective(900px) rotateX(7deg) translate3d(0,2%,0) scale3d(.94,.96,1)}
+  100%{opacity:.86;transform:perspective(900px) rotateX(0) translate3d(0,0,0) scale3d(1,1,1)}
+}
+@keyframes oviaBottleArrival{
+  0%{opacity:0;transform:translate3d(0,145px,-360px) scale(.13) rotate(-13deg);filter:blur(9px) drop-shadow(0 6px 8px rgba(7,40,58,0))}
+  34%{opacity:.64;transform:translate3d(0,72px,-160px) scale(.48) rotate(5deg);filter:blur(3px) drop-shadow(0 15px 16px rgba(7,40,58,.10))}
+  68%{opacity:1;transform:translate3d(0,-10px,24px) scale(1.045) rotate(-1deg);filter:blur(0) drop-shadow(0 30px 27px rgba(7,26,48,.22))}
+  84%{opacity:1;transform:translate3d(0,3px,0) scale(.99) rotate(.3deg);filter:blur(0) drop-shadow(0 28px 24px rgba(7,26,48,.22))}
+  100%{opacity:1;transform:translate3d(0,0,0) scale(1) rotate(0);filter:blur(0) drop-shadow(0 28px 24px rgba(7,26,48,.22))}
+}
+@keyframes oviaBottleSettledFloat{
+  0%,100%{transform:translate3d(0,0,0) rotate(-.6deg)}
+  50%{transform:translate3d(0,-11px,0) rotate(.7deg)}
+}
+@keyframes oviaRiverFlow{to{stroke-dashoffset:-360}}
+@keyframes oviaRiverGlisten{0%,100%{opacity:.82}50%{opacity:1}}
+@keyframes oviaPoolRipple{
+  0%{opacity:0;transform:scale(.76)}
+  25%{opacity:.55}
+  100%{opacity:0;transform:scale(1.28)}
+}
+@keyframes oviaWaterDrop{
+  0%{opacity:0;transform:translate3d(0,18px,0) scale(.08) rotate(30deg)}
+  35%{opacity:1;transform:translate3d(0,-9px,0) scale(1) rotate(0)}
+  100%{opacity:0;transform:translate3d(0,13px,0) scale(.35) rotate(-12deg)}
+}
+@media(max-width:680px){
+  .ovia-water-runup{left:-17%;right:-17%;top:2%;bottom:-3%}
+  .hero-bottle-wrap .hero-product-image{animation-duration:2.35s,5.8s;animation-delay:.16s,2.51s}
+  @keyframes oviaBottleArrival{
+    0%{opacity:0;transform:translate3d(0,112px,-260px) scale(.16) rotate(-12deg);filter:blur(7px) drop-shadow(0 6px 8px rgba(7,40,58,0))}
+    38%{opacity:.7;transform:translate3d(0,52px,-110px) scale(.52) rotate(4deg);filter:blur(2px) drop-shadow(0 14px 14px rgba(7,40,58,.10))}
+    72%{opacity:1;transform:translate3d(0,-7px,15px) scale(1.035) rotate(-.7deg);filter:blur(0) drop-shadow(0 25px 23px rgba(7,26,48,.2))}
+    100%{opacity:1;transform:translate3d(0,0,0) scale(1) rotate(0);filter:blur(0) drop-shadow(0 25px 23px rgba(7,26,48,.2))}
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .ovia-water-runup{opacity:.86;animation:none;transform:none}
+  .ovia-river-surface,.ovia-river-current,.ovia-river-pool,.ovia-river-bed,.ovia-water-spark{animation:none}
+  .ovia-water-spark{display:none}
+  .hero-bottle-wrap .hero-product-image{opacity:1;transform:none;filter:drop-shadow(0 28px 24px rgba(7,26,48,.22));animation:none}
+}
+</style>
+
 </head><body>
 <div id="preloader"><div class="preload-orb"><svg viewBox="0 0 100 120"><path d="M50 4C38 25 15 48 15 72a35 35 0 0 0 70 0C85 48 62 25 50 4Z"/></svg></div><div class="preload-line"></div><span>OVIA</span></div>
 <header class="site-header"><a class="brand" href="index.html" aria-label="Ovia — Home" data-sound="click"><span class="brand-mark" aria-hidden="true"><img src="ovia-logo.png?v=20261027" alt=""></span><span class="brand-word">OVIA PURIFY<small>PURE WATER · BETTER TOMORROW</small></span></a><button class="menu-btn" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false" onclick="(function(b){var n=b.parentElement.querySelector('.nav');if(!n)return;var o=!n.classList.contains('open');n.classList.toggle('open',o);n.style.cssText=o?'display:flex;position:fixed;top:70px;left:0;right:0;flex-direction:column;background:#fff;padding:20px 25px;z-index:9999;box-shadow:0 20px 30px #071b3315;max-height:calc(100dvh - 70px);overflow-y:auto':'';b.setAttribute('aria-expanded',String(o));})(this)"><i></i><i></i></button><nav id="primary-navigation" class="nav"><a class="active" href="index.html">Home</a><a href="about.html">About</a><a href="products.html">Products</a><a href="quality.html">Quality</a><a href="distribution.html">Distribution</a><a href="contact.html">Contact</a></nav></header>
 <main>
 <section class="hero"><div class="hero-water"></div><div class="hero-copy reveal"><p class="eyebrow">PURE HYDRATION / EST. 2026</p><h1>Pure,<br><em>simply.</em> Ovia.</h1><p class="lead">Premium drinking water designed around clarity, consistency and a modern standard of trust.</p><div class="home-proof"><div><b>EVERYDAY HYDRATION</b><span>For homes, tables and daily routines.</span></div><div><b>HOME & BUSINESS</b><span>Formats for personal and workplace needs.</span></div><div><b>BUILT ON CLARITY</b><span>A clean, considered Ovia experience.</span></div></div><div class="hero-actions"><a class="btn btn-primary" href="products.html" data-sound="whoosh">Explore water <span>↗</span></a><a class="text-link" href="about.html">Discover Ovia</a></div></div>
-<div class="hero-bottle-wrap reveal"><div class="halo"></div><img class="hero-product-image" src="bottle-1.5l.png" alt="OVIA 1.5 litre pure drinking water bottle" fetchpriority="high"><div class="hero-orbit o1"></div><div class="hero-orbit o2"></div><div class="hero-caption"><span>01</span><span>HYDRATION, REFINED</span></div></div>
+<div class="hero-bottle-wrap reveal">
+  <div class="halo" aria-hidden="true"></div>
+  <div class="ovia-water-runup" aria-hidden="true">
+    <svg class="ovia-river-svg" viewBox="0 0 800 660" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="oviaRiverDepth" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#b9f4f4" stop-opacity="0"/>
+          <stop offset=".24" stop-color="#7de1e8" stop-opacity=".25"/>
+          <stop offset=".57" stop-color="#37b8d0" stop-opacity=".48"/>
+          <stop offset="1" stop-color="#087f9e" stop-opacity=".24"/>
+        </linearGradient>
+        <linearGradient id="oviaRiverShimmer" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ffffff" stop-opacity=".04"/>
+          <stop offset=".42" stop-color="#ffffff" stop-opacity=".66"/>
+          <stop offset=".68" stop-color="#c8fbfa" stop-opacity=".22"/>
+          <stop offset="1" stop-color="#ffffff" stop-opacity=".04"/>
+        </linearGradient>
+        <radialGradient id="oviaRiverPool">
+          <stop offset="0" stop-color="#eaffff" stop-opacity=".7"/>
+          <stop offset=".48" stop-color="#62d6e3" stop-opacity=".26"/>
+          <stop offset="1" stop-color="#62d6e3" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <path class="ovia-river-bed" d="M386 -28 C350 74 425 143 386 249 C347 357 455 475 204 680 L596 680 C345 475 453 357 414 249 C375 143 450 74 414 -28 Z" fill="url(#oviaRiverDepth)" stroke="#ffffff" stroke-opacity=".35" stroke-width="3"/>
+      <path class="ovia-river-surface" d="M400 -20 C366 82 439 145 400 250 C361 356 450 470 400 660" fill="none" stroke="url(#oviaRiverShimmer)" stroke-width="104" stroke-linecap="round"/>
+      <path class="ovia-river-current current-one" d="M390 -10 C358 86 428 145 391 250 C354 354 438 476 365 650" fill="none" stroke="#ffffff" stroke-opacity=".58" stroke-width="3" stroke-linecap="round" stroke-dasharray="22 36"/>
+      <path class="ovia-river-current current-two" d="M410 -10 C442 86 372 145 409 250 C446 354 362 476 435 650" fill="none" stroke="#c8fbfa" stroke-opacity=".78" stroke-width="2" stroke-linecap="round" stroke-dasharray="13 31"/>
+      <path class="ovia-river-current current-three" d="M400 -10 C373 90 432 150 400 250 C369 360 430 475 400 650" fill="none" stroke="#ffffff" stroke-opacity=".34" stroke-width="12" stroke-linecap="round" stroke-dasharray="2 54"/>
+      <ellipse class="ovia-river-pool pool-one" cx="400" cy="510" rx="175" ry="38" fill="url(#oviaRiverPool)"/>
+      <ellipse class="ovia-river-pool pool-two" cx="400" cy="510" rx="112" ry="23" fill="none" stroke="#ffffff" stroke-opacity=".34" stroke-width="2"/>
+    </svg>
+    <span class="ovia-water-spark spark-one"></span>
+    <span class="ovia-water-spark spark-two"></span>
+    <span class="ovia-water-spark spark-three"></span>
+    <span class="ovia-water-spark spark-four"></span>
+    <span class="ovia-water-spark spark-five"></span>
+  </div>
+  <img class="hero-product-image" src="bottle-1.5l.png" alt="OVIA 1.5 litre pure drinking water bottle" fetchpriority="high">
+  <div class="hero-orbit o1"></div><div class="hero-orbit o2"></div>
+  <div class="hero-caption"><span>01</span><span>HYDRATION, REFINED</span></div>
+</div>
 <div class="scroll-cue">SCROLL <span>↓</span></div></section>
 <section class="section split"><div class="section-tag reveal">01 / THE BRAND</div><div class="split-content reveal"><p class="eyebrow">A clearer standard</p><h2>Water that feels as <em>pure</em> as it looks.</h2><p>Ovia is built for people who care about what they bring to the table. From everyday hydration to hospitality, our focus is simple: dependable drinking water with a refined experience.</p><a class="btn btn-dark" href="about.html">Our story <span>→</span></a></div></section>
 <section class="dark-band"><div class="marquee"><span>PURE WATER</span><span>MODERN STANDARD</span><span>EVERYDAY HYDRATION</span><span>PURE WATER</span></div></section>
