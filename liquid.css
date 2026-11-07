@@ -370,7 +370,7 @@ html body footer.footer{
   box-shadow:0 -22px 70px rgba(6,65,86,.10);
 }
 html body footer.footer:before{
-  content:"";position:absolute;z-index:-1;inset:16px clamp(12px,3.8vw,56px) 15px;
+  content:"";position:absolute;z-index:0;inset:16px clamp(12px,3.8vw,56px) 15px;
   border-radius:28px;
   border:1px solid rgba(219,249,251,.24);
   background:
