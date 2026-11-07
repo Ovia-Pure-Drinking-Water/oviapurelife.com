@@ -56,6 +56,7 @@
 @media(prefers-reduced-motion:reduce){.contact-hero *,.contact-layout *{scroll-behavior:auto;transition:none!important;animation:none!important}}
 </style>
 <style>.simple-footer-brand{display:flex;align-items:center;gap:12px}.simple-footer-brand img{width:42px;height:42px;flex:0 0 42px;object-fit:contain;border-radius:50%}.simple-footer-brand b{display:block}</style><style id="ovia-lead-source-field">.optional-note{display:inline!important;color:#7e929f;font-size:10px;font-weight:500;font-style:italic;margin-left:4px}.form-card select[name="lead_source"]{color-scheme:light}</style>
+<link rel="stylesheet" href="liquid.css?v=20261107">
 </head>
 <body>
 <header class="site-header">
@@ -100,10 +101,30 @@
 </div>
 </section>
 </main>
-<footer class="footer">
-<div class="simple-footer-brand"><img src="ovia-logo.png?v=20261027" alt="Ovia Purify logo"><div><b>OVIA</b><p>Pure drinking water.<br>Purely considered.</p></div></div>
-<div class="footer-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="products.html">Products</a><a href="quality.html">Quality</a><a href="distribution.html">Distribution</a><a href="contact.html">Contact</a><a href="order.html">Place an order</a><a href="report.html">Report an issue</a></div>
-<small>© 2026 Ovia Pure Drinking Water</small>
+<footer class="footer home-footer">
+  <div class="footer-brand">
+    <a class="footer-logo" href="index.html" aria-label="OVIA PURIFY Home">
+      <img src="ovia-logo.png?v=liquid-20261107" alt="OVIA PURIFY" class="footer-logo-image">
+      <span>OVIA PURIFY<small>PURE WATER · BETTER TOMORROW</small></span>
+    </a>
+    <p>Pure drinking water.<br>Purely considered.</p>
+  </div>
+  <div class="footer-navigation">
+    <strong>EXPLORE OVIA</strong>
+    <div class="footer-links">
+      <a href="index.html">Home</a><a href="about.html">About</a>
+      <a href="products.html">Products</a><a href="quality.html">Quality</a>
+      <a href="distribution.html">Distribution</a><a href="contact.html">Contact</a>
+      <a href="order.html">Place an Order</a><a href="report.html">Report an Issue</a>
+    </div>
+  </div>
+  <div class="footer-contact">
+    <strong>HERE TO HELP</strong>
+    <a href="order.html">Order drinking water <span>↗</span></a>
+    <a href="contact.html">Talk to Ovia <span>↗</span></a>
+    <a href="report.html">Report an issue <span>↗</span></a>
+  </div>
+  <small>© 2026 OVIA PURIFY · PURE WATER · BETTER TOMORROW</small>
 </footer>
 <div id="success-modal"></div>
 <script src="app.js?v=pricing-clean-20261027-v2"></script>
